@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import db from "../config/db.js";
 
 export const register = async (req, res) => {
@@ -12,4 +13,27 @@ export const register = async (req, res) => {
   );
 
   res.json({ message: "User created" });
+};
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  const [users] = await db.query("SELECT * FROM users WHERE email=?", [email]);
+
+  if (users.length === 0)
+    return res.status(400).json({ message: "User not found" });
+
+  const user = users[0];
+
+  const match = await bcrypt.compare(password, user.password);
+  if (!match)
+    return res.status(400).json({ message: "Invalid credentials" });
+
+  const token = jwt.sign(
+    { id: user.id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: "2d" }
+  );
+
+  res.json({ token });
 };
