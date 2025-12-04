@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 
 import authRoutes from "./src/routes/auth.routes.js";
@@ -7,6 +8,11 @@ import taskRoutes from "./src/routes/tasks.routes.js";
 dotenv.config();
 
 const app = express();
+
+app.use(cors({
+  origin: "*",
+  methods: "GET,POST,PUT,DELETE",
+}));
 
 app.use(express.json());
 
