@@ -15,6 +15,10 @@ export class ToDoList {
     return this.http.post(`${this.api}/auth/login`, { email, password });
   }
 
+  register(data: object) {
+    return this.http.post(`${this.api}/auth/register`, { ...data });
+  }
+
   getTasks(token: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
     return this.http.get(`${this.api}/tasks`, { headers });
@@ -27,7 +31,7 @@ export class ToDoList {
 
   updateTask(id: number, data: any, token: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
-    return this.http.put(`${this.api}/tasks/${id}`, data, { headers });
+    return this.http.patch(`${this.api}/tasks/${id}`, data, { headers });
   }
 
   deleteTask(id: number, token: string) {
