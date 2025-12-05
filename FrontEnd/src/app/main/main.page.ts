@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {  IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { IonCard, IonCardContent, IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterLink, Router } from '@angular/router';
 import { ToDoList } from '../servises/to-do-list';
 
 @Component({
@@ -10,20 +10,35 @@ import { ToDoList } from '../servises/to-do-list';
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
   standalone: true,
-  imports: [ IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [ RouterLink, IonCard, IonCardContent, IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class MainPage implements OnInit {
   email = '';
   password = '';
+  errorMessage = "";
 
   constructor(private api: ToDoList, private router: Router) {}
 
-  login() {
-    this.api.login(this.email, this.password).subscribe((res: any) => {
-      localStorage.setItem('token', res.token);
-      this.router.navigate(['/tasks']);
-    });
+
+login() {
+  this.errorMessage = ""; 
+
+  if (!this.email || !this.password) {
+    this.errorMessage = "Todos los campos son obligatorios.";
+    return;
   }
+
+  this.api.login(this.email, this.password).subscribe({
+    next: (res: any) => {
+      localStorage.setItem("token", res.token);
+      this.router.navigate(['/tasks']);
+    },
+    error: (err) => {
+      console.log(err);
+      this.errorMessage = err.error?.message || "Credenciales incorrectas";
+    }
+  });
+}
 
   ngOnInit() {
   }
