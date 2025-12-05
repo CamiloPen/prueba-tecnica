@@ -1,23 +1,94 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>tasks</ion-title>
+    <ion-title>Tareas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">tasks</ion-title>
+      <ion-title size="large">Tareas</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list>
-    @for (task of tasks; track task.id) {
-      <ion-item>
-        <ion-label>
-          <h2>{{task.title}}</h2>
-        </ion-label>
-      </ion-item>
-    }
-  </ion-list>
   
+  @for (task of tasks; track task.id) {
+    <ion-card>
+      <ion-card-content>
+        <h2>Título</h2>
+        
+        <ion-input [disabled]="!task.editing" [(ngModel)]="task.title"></ion-input>
+
+          <h2>Descripción</h2>
+        <ion-input [disabled]="!task.editing" [(ngModel)]="task.description"></ion-input>
+
+          <h2>Estado</h2>
+          <ion-select 
+            [disabled]="!task.editing" 
+            [(ngModel)]="task.status">
+
+            <ion-select-option value="pendiente">Pendiente</ion-select-option>
+            <ion-select-option value="completada">Completada</ion-select-option>
+
+          </ion-select>
+
+          <h2>Fecha de inicio</h2>
+          <ion-input [disabled]="true" [(ngModel)]="task.created_at">
+          </ion-input>
+
+        <ion-button expand="full" (click)="onEditTask(task)">
+          {{ task.editing ? 'Guardar' : 'Editar Tarea' }}
+        </ion-button>
+
+        <ion-button fill="clear" expand="full" color="danger" (click)="deleteTask(task.id)">
+          Eliminar Tarea
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+  }
+  
+  <ion-card>
+      <ion-card-content>
+        <ion-input 
+          label="Titulo" 
+          [(ngModel)]="newTask.title"
+          name="taskTitle"
+          type="taskTitle"
+          label-placement="floating"
+          fill="outline"
+          required
+          #taskTitleField="ngModel"
+          placeholder="ej: Compra">
+        </ion-input>
+
+        <p *ngIf="taskTitleField.invalid && taskTitleField.touched" class="error">
+          no olvides ingresar un titulo.
+        </p>
+
+        <ion-input 
+          label="Descripción" 
+          [(ngModel)]="newTask.description"
+          name="taskDescription"
+          type="taskDescription"
+          label-placement="floating"
+          fill="outline"
+          required
+          #taskDescriptionField="ngModel"
+          placeholder="ej: Compra">
+        </ion-input>
+
+        <p *ngIf="taskDescriptionField.invalid && taskDescriptionField.touched" class="error">
+          no olvides ingresar un titulo.
+        </p>
+
+        <p *ngIf="errorMessage" class="error">
+          {{ errorMessage }}
+        </p>
+        
+        <ion-button expand="full" (click)="createTask()">
+          Guardar nueva tarea
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
 </ion-content>
