@@ -36,6 +36,12 @@ export class RegisterPage implements OnInit {
     this.api.register(this.newUser).subscribe({
       next: (res: any) => {
         this.router.navigate(['/main']);
+        this.newUser = {
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: ""
+        }
       },
     error: (err) => {
       console.log(err);

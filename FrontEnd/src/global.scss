@@ -58,6 +58,14 @@ ion-avatar {
   }
 }
 
+ion-content {
+  margin: 10px;
+}
+
+ion-card {
+  max-width: 1400px;
+}
+
 ion-input {
   --border-color: grey;
 
@@ -65,9 +73,9 @@ ion-input {
 }
 
 .container {
+  margin: 5px;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 

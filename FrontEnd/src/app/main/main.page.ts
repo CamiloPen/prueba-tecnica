@@ -32,6 +32,8 @@ login() {
     next: (res: any) => {
       localStorage.setItem("token", res.token);
       this.router.navigate(['/tasks']);
+      this.email = "";
+      this.password = "";
     },
     error: (err) => {
       console.log(err);
