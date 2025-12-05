@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonSelect, IonSelectOption, IonCard, IonCardContent, IonButton, IonInput, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonSelect, IonSelectOption, IonCard, IonCardContent, IonButton, IonInput, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ToDoList } from '../servises/to-do-list';
 
 @Component({
@@ -9,7 +9,7 @@ import { ToDoList } from '../servises/to-do-list';
   templateUrl: './tasks.page.html',
   styleUrls: ['./tasks.page.scss'],
   standalone: true,
-  imports: [IonSelect, IonSelectOption, IonCard, IonCardContent, IonButton, IonInput, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonSelect, IonSelectOption, IonCard, IonCardContent, IonButton, IonInput, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class TasksPage implements OnInit {
 
