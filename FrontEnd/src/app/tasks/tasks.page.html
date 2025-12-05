@@ -5,7 +5,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
+  <div class="center">
+    
   @for (task of tasks; track task.id) {
     <ion-card>
       <ion-card-content>
@@ -20,8 +21,8 @@
             [(ngModel)]="task.status"
             fill="outline">
 
-            <ion-select-option value="pendiente">Pendiente</ion-select-option>
-            <ion-select-option value="completada">Completada</ion-select-option>
+            <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+            <ion-select-option value="Completada">Completada</ion-select-option>
 
           </ion-select>
 
@@ -76,5 +77,5 @@
         </ion-button>
       </ion-card-content>
     </ion-card>
-
+  </div>
 </ion-content>
