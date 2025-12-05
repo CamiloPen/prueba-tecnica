@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonCard, IonCardContent, IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonAvatar, IonCard, IonCardContent, IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { RouterLink, Router } from '@angular/router';
 import { ToDoList } from '../servises/to-do-list';
 
@@ -10,7 +10,7 @@ import { ToDoList } from '../servises/to-do-list';
   templateUrl: './main.page.html',
   styleUrls: ['./main.page.scss'],
   standalone: true,
-  imports: [ RouterLink, IonCard, IonCardContent, IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [ IonAvatar, RouterLink, IonCard, IonCardContent, IonInput, IonItem, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class MainPage implements OnInit {
   email = '';
@@ -32,6 +32,8 @@ login() {
     next: (res: any) => {
       localStorage.setItem("token", res.token);
       this.router.navigate(['/tasks']);
+      this.email = "";
+      this.password = "";
     },
     error: (err) => {
       console.log(err);

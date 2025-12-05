@@ -39,14 +39,16 @@ export class TasksPage implements OnInit {
 
   createTask() {
 
-    if (!this.newTask.title || !this.newTask.description) {
-      this.errorMessage = "Todos los campos son obligatorios.";
+    if (!this.newTask.title) {
+      this.errorMessage = "Olvidaste el titulo";
       return;
     }
 
     this.api.createTask(this.newTask, this.token!).subscribe({
       next: (res: any) => {
         this.loadTasks();
+        this.newTask = { title: '', description: '' };
+
       }, error: (err) => {
         console.log(err);
         this.errorMessage = err.error?.message || "algo va mal";
