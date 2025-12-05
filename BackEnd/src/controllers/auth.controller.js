@@ -3,16 +3,16 @@ import jwt from "jsonwebtoken";
 import db from "../config/db.js";
 
 export const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   const hashed = await bcrypt.hash(password, 10);
 
   await db.query(
-    "INSERT INTO users(name,email,password) VALUES (?,?,?)",
-    [name, email, hashed]
+    "INSERT INTO users(firstName,lastName,email,password) VALUES (?,?,?,?)",
+    [firstName, lastName, email, hashed]
   );
 
-  res.json({ message: "User created" });
+  res.json({ message: "usuario creado correctamente" });;
 };
 
 export const login = async (req, res) => {
