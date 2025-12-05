@@ -9,7 +9,11 @@
   <div class="container">
     <ion-card>
       <ion-card-content>
-        <ion-input 
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <div class="line">
+          <ion-input 
           label="Correo Electrónico" 
           [(ngModel)]="email"
           name="email"
@@ -47,6 +51,7 @@
 
         <ion-button expand="full" (click)="login()">Ingresar</ion-button>
         <ion-button [routerLink]="['/register']" expand="full" fill="clear">Registrarse</ion-button>
+        </div>
 
       </ion-card-content>
     </ion-card>
