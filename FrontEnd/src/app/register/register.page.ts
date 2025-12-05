@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonAvatar, IonCard, IonCardContent, IonInput, IonList, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonAvatar, IonCard, IonCardContent, IonInput, IonButton, IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { ToDoList } from '../servises/to-do-list';
 import { RouterLink, Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { RouterLink, Router } from '@angular/router';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonAvatar, IonCard, IonCardContent, RouterLink, IonInput, IonList, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonAvatar, IonCard, IonCardContent, RouterLink, IonInput, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class RegisterPage implements OnInit {
   newUser = {
