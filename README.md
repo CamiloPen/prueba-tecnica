@@ -42,9 +42,9 @@ Crear un archivo .env dentro de la carpeta backend con:
 ```ini
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=tu_password
+DB_PASS=tu_password
 DB_NAME=todo_app
-PORT=3000
+PORT=4000
 JWT_SECRET=tu_llave_secreta
 ```
 
