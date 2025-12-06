@@ -25,8 +25,8 @@ export const updateTask = async (req, res) => {
   const closed_at = new Date()
 
   await db.query(
-    "UPDATE tasks SET title=?, description=?, status=?, closed_at=? WHERE id=? AND user_id=?",
-    [title, description, status, closed_at, id, req.user.id]
+    "UPDATE tasks SET title=?, description=?, status=? WHERE id=? AND user_id=?",
+    [title, description, status, id, req.user.id]
   );
 
   res.json({ message: "Task updated" });
